@@ -1,18 +1,23 @@
 var VoteforMe = (function() {
     
-    var domElements = $('ul li');
-    var lists = [];
+    var doms = ('ul li'),
+        lists= $(doms).get();
     
-    function test() {
-      return lists.push(domElements);   
-    }
+    
     
     return {
+        next : function() {
+            index = 2;
+            for (var i = 0; i < lists.length; i++) {
+                console.log(lists[index++]);
+            }
+          
+        },
         init : function() {
-            test();   
-            for (var i=0; i<lists.length; i++) {
-                 console.log('lists ' + lists[i]);
-           }
+           var self = this;
+           $(doms).on('click', function() {
+                self.next(); 
+            });
         }
     }
     
