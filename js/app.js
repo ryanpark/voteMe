@@ -1,14 +1,23 @@
 var VoteforMe = (function() {
     
-    var test = '1';
+    var domElements = $('ul li');
+    var lists = [];
+    
+    function test() {
+      return lists.push(domElements);   
+    }
     
     return {
         init : function() {
-            console.log(test)   
+            test();   
+            for (var i=0; i<lists.length; i++) {
+                 console.log('lists ' + lists[i]);
+           }
         }
     }
     
 })();
 
-
-VoteforMe.init();
+$(function(){
+    VoteforMe.init();    
+});
