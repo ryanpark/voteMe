@@ -3,8 +3,6 @@ var VoteforMe = (function() {
     var doms = ('ul li'),
         lists= $(doms).get();
     
-    
-    
     return {
         next : function() {
             index = 2;
