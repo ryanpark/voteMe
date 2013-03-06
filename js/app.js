@@ -1,22 +1,22 @@
 var VoteforMe = (function() {
     
-    var doms = ('ul li'),
-        lists= $(doms).get();
-    
-    
+    var doms = $('ul li'),
+        arr = [],
+        start = 1;
     
     return {
-        next : function() {
-            index = 2;
-            for (var i = 0; i < lists.length; i++) {
-                console.log(lists[index++]);
-            }
-          
+        next : function(e) {
+            $(arr).hide();
+            $(e).show();
+            $(arr[start++]).show();
         },
         init : function() {
-           var self = this;
-           $(doms).on('click', function() {
-                self.next(); 
+            var self = this;
+            for (var i = 0; i < doms.length; i++) {
+              arr.push(doms[i]);
+            }
+            $(arr).on('click', function(e) {
+              self.next(this);
             });
         }
     }
@@ -24,5 +24,5 @@ var VoteforMe = (function() {
 })();
 
 $(function(){
-    VoteforMe.init();    
+    VoteforMe.init();
 });
