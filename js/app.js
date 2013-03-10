@@ -1,22 +1,26 @@
 var VoteforMe = (function() {
     
-    var doms = $('ul li'),
-        arr = [],
-        start = 1;
+   var arr = [],
+       start = 1;
     
     return {
-        next : function(e) {
-            $(arr).hide();
-            $(e).show();
-            $(arr[start++]).show();
+        display: function (elem) {
+            
         },
-        init : function() {
+        next : function(elem) {
+            elem == arr[1] ? alert('asd') : alert('sadas');
+        },
+        init : function(elem) {
             var self = this;
-            for (var i = 0; i < doms.length; i++) {
-              arr.push(doms[i]);
+            var elem = $(elem);
+            for (var i = 0; i < elem.length; i++) {
+                arr.push(elem[i]);
             }
-            $(arr).on('click', function(e) {
-              self.next(this);
+            elem.on('mouseover', function() {
+               self.display(this); 
+            });
+            elem.on('click', function() {
+                self.next(this);
             });
         }
     }
@@ -24,5 +28,5 @@ var VoteforMe = (function() {
 })();
 
 $(function(){
-    VoteforMe.init();
+    VoteforMe.init('#gallery ul li');
 });
