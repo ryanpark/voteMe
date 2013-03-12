@@ -1,20 +1,31 @@
 var VoteforMe = (function() {
     
-    var doms = ('ul li'),
-        lists= $(doms).get();
+   var arr = [],
+       start = 2;
+    
+    
+    function display(item) {
+        $(arr).hide();
+        $(item).show();    
+    }
     
     return {
-        next : function() {
-            index = 2;
-            for (var i = 0; i < lists.length; i++) {
-                console.log(lists[index++]);
-            }
-          
+        next : function(elem) {
+            var self = this;
+            elem == arr[1] ? display(arr[start++]) : display(arr[start++]);
+            $(elem).show();
         },
-        init : function() {
-           var self = this;
-           $(doms).on('click', function() {
-                self.next(); 
+        init : function(elem) {
+            var self = this;
+            var elem = $(elem);
+            for (var i = 0; i < elem.length; i++) {
+                arr.push(elem[i]);
+            }
+           /* elem.on('mouseover', function() {
+               self.display(this); 
+            });*/
+            elem.on('click', function() {
+                self.next(this);
             });
         }
     }
@@ -22,5 +33,5 @@ var VoteforMe = (function() {
 })();
 
 $(function(){
-    VoteforMe.init();    
+    VoteforMe.init('#gallery ul li');
 });
