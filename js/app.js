@@ -2,7 +2,8 @@ var VoteforMe = (function() {
     
    var arr = [],
        start = 2,
-       final = 'a';
+       final = '';
+    
     
     
     function nextItem(item, target) {
@@ -13,11 +14,13 @@ var VoteforMe = (function() {
     }
     
     function finalItem(i) {
-        var final = $(i).find('span').text();
-        $(arr).hide();
-        $(i).show();
-        $('body').append('<div>' + final + ' </div>');
+        final = $(i).find('span').text();
+        var $target = $(arr).filter(':visible').not(i);
+        $target.hide();
+        $('body').append('<div class="final">' + final + ' </div>');
     }
+    
+   
     
     return {
         next : function(elem) {
