@@ -17,7 +17,8 @@ var VoteforMe = (function() {
         final = $(i).find('span').text();
         var $target = $(arr).filter(':visible').not(i);
         $target.hide();
-        $('body').append('<div class="final">' + final + ' </div>');
+        $('.final').length ? $('.final').fadeOut('fast').fadeIn('slow') : $('body').append('<div class="final">' + final + ' </div>');   
+            
     }
     
    
