@@ -8,9 +8,16 @@ var VoteforMe = (function() {
     
     function nextItem(item, target) {
         var $target = $(arr).filter(':visible').not(target),
+            className = $(target).attr('class'),
             $item = $(item);
-           $target.hide(); 
-           $item.show();
+        
+        if (className == 'left' ) {
+            $item.addClass('right');
+        } else {
+            
+        }
+        $target.fadeOut('fast'); 
+        $item.addClass('display');
     }
     
     function finalItem(i) {
