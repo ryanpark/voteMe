@@ -10,7 +10,7 @@ var VoteforMe = (function() {
         var $target = $(arr).filter(':visible').not(target),
             $item = $(item);
            $target.hide(); 
-           $item.show();
+           $item.show();    
     }
     
     function finalItem(i) {
@@ -30,7 +30,7 @@ var VoteforMe = (function() {
             dom == undefined ? self.final(elem) :  nextItem(dom, elem);  
         },
         final: function(item) {
-            finalItem(item)   
+            finalItem(item);  
         },
         init : function(elem) {
             var self = this,
