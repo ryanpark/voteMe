@@ -4,21 +4,30 @@ var VoteforMe = (function() {
        start = 2,
        final = '';
     
-    
-    
     function nextItem(item, target) {
         var $target = $(arr).filter(':visible').not(target),
+            className = $(target).attr('class'),
             $item = $(item);
-           $target.hide(); 
-           $item.show();    
+        
+        $target.fadeOut('fast'); 
+        
+        switch (className) {
+            case 'right' :
+            $item.addClass('left');
+            break;
+            case 'left' :
+            $item.addClass('right');
+            break;
+        }
+        
+        $item.show();
     }
     
     function finalItem(i) {
         final = $(i).find('span').text();
         var $target = $(arr).filter(':visible').not(i);
         $target.hide();
-        $('.final').length ? $('.final').fadeOut('fast').fadeIn('slow') : $('body').append('<div class="final">' + final + ' </div>');   
-            
+        $('.final').length ? $('.final').fadeOut('fast').fadeIn('slow') : $('body').append('<div class="final">' + final + ' </div>');
     }
     
    
@@ -30,7 +39,7 @@ var VoteforMe = (function() {
             dom == undefined ? self.final(elem) :  nextItem(dom, elem);  
         },
         final: function(item) {
-            finalItem(item);  
+            finalItem(item)   
         },
         init : function(elem) {
             var self = this,
