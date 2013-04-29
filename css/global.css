@@ -132,3 +132,7 @@ body {background:#eee;}
 #gallery ul li a span {
     display:none;   
 }
+
+.test {
+ background:red;   
+}
