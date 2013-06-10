@@ -1,3 +1,57 @@
+
+
+function voteme(ele) {
+    this.ele = ele;
+	this.count = 0;
+    this.init();
+}
+
+voteme.prototype.init = function() {
+    var $this = $(this.ele),
+		self = this;
+
+	this.length = $this.length - 2;
+	
+	$this.hide();
+	$this.slice(0,2).show();
+	
+	
+	return $this.each(function(i, j) {
+		
+		$(j).on({
+			mouseenter : function() {
+	
+			},
+			click : function() {
+				self.next(this, i);
+			}
+		});
+	});
+}
+voteme.prototype.next = function(ele, c) {
+	var $this = $(this.ele),
+		self = this,
+		$ele = $(ele),
+		i = 2;
+	
+	if (c === 1) {
+		$this.first().hide();
+	} else {
+		$ele.next().hide();
+	}
+	
+	$this.slice(0, i++).show();
+	
+	self.count++
+	
+	if (self.count == self.length) {
+		alert('d');
+	}
+}
+var vote = new voteme('#gallery ul li');
+
+/*
+
 var VoteforMe = (function() {
     
    var arr = [],
@@ -65,3 +119,4 @@ var VoteforMe = (function() {
 $(function(){
     VoteforMe.init('#gallery ul li');
 });
+*/
