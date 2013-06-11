@@ -36,11 +36,10 @@ voteme.prototype.next = function(ele, c) {
 	
 	if (c === 1) {
 		$this.first().hide();
+		
 	} else {
-		$ele.next().hide();
+		$this.index(3).show();
 	}
-	
-	$this.slice(0, i++).show();
 	
 	self.count++
 	
