@@ -2,7 +2,7 @@
 
 function voteme(ele) {
     this.ele = ele;
-	this.count = 0;
+	this.count = 2;
     this.init();
 }
 
@@ -31,21 +31,23 @@ voteme.prototype.init = function() {
 voteme.prototype.next = function(ele, c) {
 	var $this = $(this.ele),
 		self = this,
-		$ele = $(ele),
-		i = 2;
+		$ele = $(ele);
+		index = self.count++,
+		item = $this.get(index),
+		classId = $ele.next().attr('class'); 
 	
+
 	if (c === 1) {
-		$this.first().hide();
-		
+		$ele.prev().hide();
 	} else {
-		$this.index(3).show();
+		$ele.next().hide();
+		//$this.get(3).show();
 	}
 	
-	self.count++
+	$(item).addClass(classId).show();
 	
-	if (self.count == self.length) {
-		alert('d');
-	}
+	
+	
 }
 var vote = new voteme('#gallery ul li');
 
