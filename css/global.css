@@ -114,6 +114,9 @@ body {background:#eee;}
 #gallery ul li {
     width:300px; height:350px; border:1px solid grey;float:left; 
  }
+#gallery ul li img {
+  width:300px; height:350px; display:block;   
+}
 #gallery ul li.left{
     position:absolute; top:1px; left:1px; 
 }
@@ -128,4 +131,25 @@ body {background:#eee;}
  }
 #gallery ul li a span {
     display:none;   
+}
+
+.test {
+ background:red;   
+}
+}
+
+.Mastertest2 {
+    background:blue;
+}
+
+.Master-test3 {
+    background:red;
+}
+
+.test2 {
+  background:white;   
+}
+
+.Master-test4 {
+ background:black;   
 }
