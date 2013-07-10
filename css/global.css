@@ -101,7 +101,7 @@ input, select {
     vertical-align:middle;
 }
 
-body {background:#eee;}
+body {background:#eee; font-family:arial}
 
 .container {width:600px; margin:0 auto;}
 #gallery {
@@ -128,9 +128,17 @@ body {background:#eee;}
     
 #gallery ul li a {
     display:block;   
+	position:relative;
  }
 #gallery ul li a span {
     display:none;   
+	position:absolute;
+	bottom:1px;
+	left:1px;
+	width:100%;
+	background:#333;
+	color:#fff;
+	padding:5px 10px;
 }
 
 .test {
