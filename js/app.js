@@ -23,19 +23,40 @@ voteMe.prototype.next = function() {
 	var self = this,
 		j = 0;
 		
-	this.ele.on('click', function() {
-		var className = $(this).attr('class'),
-			domEl = self.arr[j++];
-		
-		/* to do */ self.ele.not(this).hide();
-		self.getItem(className, domEl);
-		if (domEl == undefined) {
-			self.complete();
+	function alink (link, event) {
+		var target = $(link).find('span');
+		if (event.type == 'mouseenter') {
+			target.fadeIn('fast');
+		}
+		if (event.type == 'mouseleave') {
+			target.fadeOut('slow');
+		}
+	}
+	
+	this.ele.on({
+		click : function() {
+			var className = $(this).attr('class'),
+				domEl = self.arr[j++];
+			
+			/* to do */ self.ele.not(this).hide();
+			self.getItem(className, domEl);
+			if (domEl == undefined) {
+				self.complete(this);
+			}
+		},
+		mouseenter : function(evt) {
+			alink(this, evt);
+		},
+		mouseleave : function(evt) {
+			alink(this, evt);
 		}
 	});
+	
+	
 };
-voteMe.prototype.complete = function() {
-	console.log('complete');
+voteMe.prototype.complete = function(domEl) {
+	var selected = $(domEl).find('span').text();
+	console.log(selected);
 	return;
 }
 voteMe.prototype.getItem = function(className, domEl) {
