@@ -26,22 +26,21 @@ voteMe.prototype.next = function() {
 	this.ele.on('click', function() {
 		var className = $(this).attr('class'),
 			domEl = self.arr[j++];
-			
-		self.ele.not(this).hide();
-		self.getItem.call(this, className, domEl);
+		
+		/* to do */ self.ele.not(this).hide();
+		self.getItem(className, domEl);
 		if (domEl == undefined) {
-			alert('done');
+			self.complete();
 		}
 	});
 };
-
+voteMe.prototype.complete = function() {
+	console.log('complete');
+	return;
+}
 voteMe.prototype.getItem = function(className, domEl) {
-	if (className == 'right') {
-		$(domEl).addClass('left').show();
-	} else {
-		$(domEl).addClass('right').show();
-	}
-	
+	(className == 'right') ? className = 'left' : className = 'right';
+	return $(domEl).addClass(className).show();
 };
 
 var vote = new voteMe('#gallery ul li');
