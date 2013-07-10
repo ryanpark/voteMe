@@ -1,125 +1,47 @@
 
 
-function voteme(ele) {
-    this.ele = ele;
-	this.count = 2;
+function voteMe(ele) {
+    this.ele = $(ele);
     this.init();
-}
+};
 
-voteme.prototype.init = function() {
-    var $this = $(this.ele),
-		self = this;
+voteMe.prototype.init = function() {
 
-	this.length = $this.length - 2;
+	this.arr = [];
 	
-	$this.hide();
-	$this.slice(0,2).show();
+	for (var i = 0; i < this.ele.length ; i++ ) {
+		if ( i !== 0 && i !== 1) {
+			this.arr.push(this.ele[i]);
+		}
+	}
+
+	this.next();
+	return $(this.arr).hide();
 	
-	
-	return $this.each(function(i, j) {
+};
+voteMe.prototype.next = function() {
+	var self = this,
+		j = 0;
 		
-		$(j).on({
-			mouseenter : function() {
-	
-			},
-			click : function() {
-				self.next(this, i);
-			}
-		});
+	this.ele.on('click', function() {
+		var className = $(this).attr('class'),
+			domEl = self.arr[j++];
+			
+		self.ele.not(this).hide();
+		self.getItem.call(this, className, domEl);
+		if (domEl == undefined) {
+			alert('done');
+		}
 	});
-}
-voteme.prototype.next = function(ele, c) {
-	var $this = $(this.ele),
-		self = this,
-		$ele = $(ele);
-		index = self.count++,
-		item = $this.get(index),
-		classId = $ele.next().attr('class'); 
-	
+};
 
-	if (c === 1) {
-		$ele.prev().hide();
+voteMe.prototype.getItem = function(className, domEl) {
+	if (className == 'right') {
+		$(domEl).addClass('left').show();
 	} else {
-		$ele.next().hide();
-		//$this.get(3).show();
+		$(domEl).addClass('right').show();
 	}
 	
-	$(item).addClass(classId).show();
-	
-	
-	
-}
-var vote = new voteme('#gallery ul li');
+};
 
-/*
-
-var VoteforMe = (function() {
-    
-   var arr = [],
-       start = 2,
-       final = '';
-    
-    function nextItem(item, target) {
-        var $target = $(arr).filter(':visible').not(target),
-            className = $(target).attr('class'),
-            $item = $(item);
-        
-        $target.fadeOut('fast'); 
-        
-        switch (className) {
-            case 'right' :
-            $item.addClass('left');
-            break;
-            case 'left' :
-            $item.addClass('right');
-            break;
-        }
-        
-        $item.show();
-    }
-    
-    function finalItem(i) {
-        final = $(i).find('span').text();
-        var $target = $(arr).filter(':visible').not(i);
-        $target.hide();
-        $('.final').length ? $('.final').fadeOut('fast').fadeIn('slow') : $('body').append('<div class="final">' + final + ' </div>');
-    }
-    
-   
-    
-    return {
-        next : function(elem) {
-            var self = this,
-                dom = arr[start++];
-            dom == undefined ? self.final(elem) :  nextItem(dom, elem);  
-        },
-        final: function(item) {
-            finalItem(item)   
-        },
-        init : function(elem) {
-            var self = this,
-                $elem = $(elem);
-            for (var i = 0; i < $elem.length; i++) {
-                arr.push($elem[i]);
-            }
-            $elem.on({
-                click: function() {
-                    self.next(this);    
-                },
-                mouseenter: function() {
-                   $(this).find('span').show();
-                },
-                mouseleave: function() {
-                   $(this).find('span').hide();
-                }
-            });
-                
-        }
-    }
-    
-})();
-
-$(function(){
-    VoteforMe.init('#gallery ul li');
-});
-*/
+var vote = new voteMe('#gallery ul li');
