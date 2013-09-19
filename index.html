@@ -19,14 +19,14 @@
         <div class="container">
         <div id="gallery">
             <ul>
-                <li class="left">
+                <li>
                     <a href="#">
                         <!--
                         <imgsrc="http://cdn.i.haymarket.net.au/Utils/ImageResizer.ashx?n=http%3a%2f%2fi.haymarket.net.au%2fNews%2f0_516_860_http-__i.haymarket.net.au_Galleries_20120913051518_iPhone_5_34Hi_Stagger_FrontBack_Black_PRINT+(Medium).jpg&h=480&w=640">-->
                        <span> test 1 </span>
                     </a>
                 </li>
-                <li class="right">
+                <li>
                     <a href="#">
                      <!--  <img src="http://www.mobilemag.com/wp-content/uploads/2013/01/galaxy-s31.jpg"> -->
                          <span> test 2 </span>
@@ -97,9 +97,16 @@
         </div>
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="js/app.js"></script>
-
-        
+        <script src="js/voteMe.js"></script>
+		<script>
+			$(function() {
+				$('#gallery ul li').voteMe({
+					callback: function() {
+						alert('done');
+					}
+				});
+			});
+        </script>
        
     </body>
 </html>

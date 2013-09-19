@@ -6,7 +6,6 @@ function voteMe(ele) {
 };
 
 voteMe.prototype.init = function() {
-
 	this.arr = [];
 	
 	for (var i = 0; i < this.ele.length ; i++ ) {
@@ -14,11 +13,11 @@ voteMe.prototype.init = function() {
 			this.arr.push(this.ele[i]);
 		}
 	}
-
+	console.log(this.arr);
 	this.next();
 	return $(this.arr).hide();
-	
 };
+
 voteMe.prototype.next = function() {
 	var self = this,
 		j = 0;
@@ -37,9 +36,10 @@ voteMe.prototype.next = function() {
 		click : function() {
 			var className = $(this).attr('class'),
 				domEl = self.arr[j++];
-			
+			console.log(j);
 			/* to do */ self.ele.not(this).hide();
-			self.getItem(className, domEl);
+			self.getItem.call(this, className, domEl);
+			
 			if (domEl == undefined) {
 				self.complete(this);
 			}
