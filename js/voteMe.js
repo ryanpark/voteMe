@@ -23,7 +23,7 @@
 				self.selectedNext(elem);
 			},
 			getItem : function(className, domEl) {
-				(className == 'right') ? className = 'left' : className = 'right';
+				(className == options.primaryCn) ? className = options.primaryCn : className = options.secondaryCn;
 				return $(domEl).addClass(className).show();
 			},
 			complete : function(domEl) {
@@ -48,19 +48,23 @@
 				
 				function alink (link, event) {
 					var target = $(link).find('span');
-					if (event.type == 'mouseenter') {
-						target.fadeIn('fast');
+					
+					if (target) {
+						if (event.type == 'mouseenter') {
+							target.fadeIn('fast');
+						}
+						if (event.type == 'mouseleave') {
+							target.fadeOut('slow');
+						}
 					}
-					if (event.type == 'mouseleave') {
-						target.fadeOut('slow');
-					}
+					
 				} 
 				$(elem).on({
 					click : function() {
 						var className = $(this).attr('class'),
 							domEl = self.nArray[self.count++];
 						
-						
+					
 						/* to do */ $(elem).not(this).hide();
 						self.getItem(className, domEl);
 						
@@ -87,12 +91,9 @@
 				} else {
 					$(this).addClass(options.secondaryCn);
 				}
-				console.log(options);
 			}
 			app.init(this);	
 		 });
-		console.log(options);
-		
 		return this;
 	};
 	
